@@ -1,0 +1,226 @@
+
+<div class="outer">
+    <div class="bgimg">
+    <div *ngIf="!isAddForm" class="container">
+        <!-- List of tickets -->
+        <div class="row">
+    
+        <div class="">
+        
+        <div class="panel bg-white border">
+            <div class="panel-heading">
+                <h3 class="pt-3 font-weigth-bold">View All Tickets</h3>
+            </div>
+            <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Ticket Number</th>
+                        <th>Ticket Class</th>
+                        <th>Passenger Name</th>
+                        <th>Train Number</th>
+                        <th>Berth Number</th>
+                        <th>Coach Number</th>
+                        <th>Departure Date</th>
+                        <th>Booking Date</th>
+                        <th>Booking Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ticket of tickets">
+                        <td>{{ticket.ticketno}}</td>
+                        <td>{{ ticket.ticketclass }}</td>
+                        <td>{{ ticket.passengerName }}</td>
+                        <td>{{ ticket.trainNo }}</td>
+                        <td>{{ ticket.berthno }}</td>
+                        <td>{{ ticket.coachno }}</td>
+                        <td>{{ ticket.arrivaldate }}</td>
+                        <td>{{ ticket.bookingdate }}</td>
+                        <td>{{ ticket.bookingstatus }}</td>
+                        <td>
+                            
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end" >
+                                  <button class="btn btn-outline-success" type="button" (click)="cancelTicket(ticket.ticketno)">Cancel Ticket</button>
+                                </div>
+                                
+                              
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div></div>
+    </div>
+
+    <div *ngIf="isAddForm">
+        <div class="container">
+            <div class="row">
+                <div class="offset-md-2 col-md-8">
+                    <div class="panel border bg-white">
+                        <div class="panel-heading">
+                            <h3 class="pt-3 font-weigth-bold">Add New Ticket</h3>
+                        </div>
+                        <div class="panel-body p-3">
+                            <div>
+                                <h5>Train Details:</h5>
+                                <table class="table table-striped table-hover">
+                                    <tr>
+                                        <th colspan="2">Train Name:</th>
+                                        <th>Start Location</th>
+                                        <th>End Location:</th>
+                                        <th>Arrival Time</th>
+                                        <th>Departure Time</th>
+                                        <th>Departure Date</th>
+                                    </tr>
+                                    <tr>
+
+                                        <td colspan="2">{{ train.trainName }}</td>
+
+                                        <td>{{ train.startloc }}</td>
+
+                                        <td>{{ train.endloc }}</td>
+
+                                        <td>{{ train.arrivaltime }}</td>
+
+                                        <td>{{ train.departuretime }}</td>
+
+                                        <td>{{ train.arrivaldate }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div>
+                                <h5>Seat Availability amd Fare:</h5>
+                                <table class="table table-striped table-hover">
+                                    <tr>
+                                        <th></th>
+                                        <th>AC 1 Tier:</th>
+                                        <th>AC 2 Tier:</th>
+                                        <th>AC 3 Tier:</th>
+                                        <th>Sleeper:</th>
+                                        <th>Tatkal:</th>
+                                        <th>Ladies:</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Seats Available</th>
+                                        <td>{{ train.ac1tier }}</td>
+                                        <td>{{ train.ac2tier }}</td>
+                                        <td>{{ train.ac3tier }}</td>
+                                        <td>{{ train.sleeper }}</td>
+                                        <td>{{ train.tatkal }}</td>
+                                        <td>{{train.ladies }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fare(in Rs)</th>
+                                        <td>{{ train.baseFare*1.5 }}</td>
+                                        <td>{{ train.baseFare*1.4 }}</td>
+                                        <td>{{ train.baseFare*1.3 }}</td>
+                                        <td>{{ train.baseFare*1.3 }}</td>
+                                        <td>{{ train.baseFare }}</td>
+                                        <td>{{train.baseFare*1.2 }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()" [hidden]="IsBooked">
+
+                                <!-- <div *ngFor="let p of passenger">
+                                        {{p}}
+                                    </div> -->
+                                    <div class="grid-container">
+                
+                                        <div class="d-flex justify-content-center">
+                                      <div class="left-section">
+                                <div class="form-group">
+                                    <label for="passengerName">Passenger Names</label>
+                                    <div class="input-field">
+                                        <span class="fa fa-user-circle-o  p-2"></span>
+                                    <select formControlName="passengerName">
+                                        <option value="" disabled selected>Select Passenger</option>
+                                        <option *ngFor="let p of passenger" [value]="p">{{ p }}</option>
+                                    </select>
+                                </div></div>
+                                    <!-- <div *ngIf="ticketForm.controls['passengerName'].invalid && (ticketForm.controls['passengerName'].dirty || ticketForm.controls['passengerName'].touched)">
+                                        <small class="text-danger"
+                                            *ngIf="ticketForm.controls['passengerName'].hasError('required')">
+                                            *Passenger names are required.
+                                        </small>
+                                    </div> -->
+                                </div></div>
+                                <div class="d-flex justify-content-center" >
+                                    <div class="right-section">
+                                <div class="form-group">
+                                    <label for="ticketclass">Train Class</label>
+                                    <div class="input-field" [class.error]="ticketForm.controls['ticketclass'].dirty && ticketForm.hasError('required','gender')">
+                                        <span class="fa fa-bookmark  p-2"></span>
+                                    <select formControlName="ticketclass"  id="ticketclass">
+                                        <option value="" disabled selected>Select Class</option>
+                                        <option value="ac1tier">AC 1 Tier</option>
+                                        <option value="ac2tier">AC 2 Tier</option>
+                                        <option value="ac3tier">AC 3 Tier</option>
+                                        <option value="sleeper">Sleeper</option>
+                                        <option value="tatkal">Tatkal</option>
+                                        <option value="ladies">Ladies</option>
+                                    </select>
+                                </div></div></div>
+                                    <!-- <div *ngIf="ticketForm.controls['ticketclass'].invalid && (ticketForm.controls['ticketclass'].dirty || ticketForm.controls['ticketclass'].touched)">>
+    
+                                      <small class="text-danger">Class is required.</small>
+                                    </div> -->
+                                </div></div>
+
+                                <button type="submit" class="btn btn-outline-primary btn-block mt-4 w-100">Submit</button>
+                                <div class="text-center pt-4 text-muted"><a routerLink="/ticket">Back
+                                        To List of
+                                        Tickets</a></div>
+                            </form>
+                            <div *ngIf="IsBooked">
+                                <h5>Booking Details:</h5>
+                                <table class="table table-striped table-hover">
+                                    <tr>
+                                        <td><strong>Passenger Name:</strong></td>
+                                        <td>{{ ticket.passengerName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Booking Status:</strong></td>
+                                        <td>{{ ticket.bookingstatus }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Ticket Class:</strong></td>
+                                        <td>{{ ticket.ticketclass }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Train No:</strong></td>
+                                        <td>{{ ticket.trainNo }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Coach No:</strong></td>
+                                        <td>{{ ticket.coachno }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Berth No:</strong></td>
+                                        <td>{{ ticket.berthno }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Booking Date:</strong></td>
+                                        <td>{{ ticket.bookingdate }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Arrival Date:</strong></td>
+                                        <td>{{ ticket.arrivaldate }}</td>
+                                    </tr>
+
+                                </table>
+                                <div class="text-center pt-4 text-muted"><a routerLink="/ticket">Back
+                                        To List of
+                                        Tickets</a></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div></div>

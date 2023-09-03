@@ -1,0 +1,13 @@
+.form-row {
+    display: flex;
+    gap: 10px; /* Adjust the space between the fields as needed */
+  }
+  .custom-margin {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+.btn-block{
+  margin-top: 20px;padding:5px ;
+  margin-left: 20px;
+  margin-right: 20px;
+}

@@ -1,0 +1,52 @@
+.bgimg {
+    background-image: url('src/assets/images/t2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 100vh;
+  }
+  .bgimg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Adjust the opacity as needed */
+  }
+  .error-container {
+    background-color: #68d1f8; /* Customize the background color for error */
+    padding: 20px;
+    border: 2px solid #141313;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 200px;
+    position: relative;
+    z-index: 1;
+  }
+  .container-fluid {
+    position: relative;
+  }
+  
+  .error-image {
+    width: 200px; /* Adjust the image width as needed */
+  }
+  .error-title {
+    color: #0a0a0a; /* Customize the font color for the title */
+    font-size: 50px; /* Adjust the font size for the title */
+    margin-bottom: 10px;
+    filter: none; /* Remove the blur effect for the title */
+  }
+  .error-description {
+    color: #0a0a0a; /* Customize the font color for the description */
+    font-size: 30px; /* Adjust the font size for the description */
+    margin-bottom: 20px;
+    filter: none; /* Remove the blur effect for the description */
+  }
+  error-button {
+    color: #070707; /* Customize the font color for the button */
+    text-decoration: underline;
+    border: #141313;
+    filter: none; /* Remove the blur effect for the button */
+  }

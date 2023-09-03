@@ -1,0 +1,13 @@
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px; 
+  }
+
+  select{
+    border: none;
+    width: 200px;
+  }
+

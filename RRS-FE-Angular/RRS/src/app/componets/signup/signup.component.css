@@ -1,0 +1,13 @@
+
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+select{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+}
+

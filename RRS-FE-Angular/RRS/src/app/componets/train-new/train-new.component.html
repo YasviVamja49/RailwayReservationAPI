@@ -1,0 +1,202 @@
+
+<div class="outer">
+  <div class="bgimg">
+    <div class="bgimg::before">
+  <div class="container">
+    <div class="row">
+      <div class="offset-md-2 col-md-8">
+        <div class="panel border bg-white">
+          <div class="panel-heading">
+            <h3 class="pt-3 font-weight-bold">Add New Train</h3>
+          </div>
+          <div class="panel-body p-3">
+            <form [formGroup]="trainForm" (ngSubmit)="onSubmit()">
+              
+              <div class="grid-container">
+                
+                  <div class="d-flex justify-content-center">
+                <div class="left-section">
+                  <div class="form-group"><br>
+                    <label for="trainName">Train Name:</label>
+                    <div class="input-field">
+                      <span class="fa fa-train input-icon"></span>
+                      <input formControlName="trainName" id="trainName" type="text"  placeholder="Train Name">
+                    </div>
+                    <small class="text-danger" *ngIf="(trainForm.controls['trainName'].dirty || trainForm.controls['trainName'].touched) && trainForm.hasError('required', 'trainName')">
+                      *Train Name is required
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <label for="startloc">Start Location:</label>
+                    <div class="input-field">
+                      <i class="fa fa-map-marker input-icon"></i>
+                      <input formControlName="startloc" id="startloc" type="text"  placeholder="Start Location">
+                    </div>
+                    <small class="text-danger" *ngIf="(trainForm.controls['startloc'].dirty || trainForm.controls['startloc'].touched) && trainForm.hasError('required', 'startloc')">
+                      *Start Location is required
+                    </small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="endloc">End Location:</label>
+                    <div class="input-field">
+                      <i class="fa fa-map-marker input-icon"></i>
+                      <input formControlName="endloc" id="endloc" type="text"  placeholder="End Location" required>
+                    </div>
+                    <small class="text-danger" *ngIf="(trainForm.controls['endloc'].dirty || trainForm.controls['endloc'].touched) && trainForm.hasError('required', 'endloc')">
+                      *End Location is required
+                    </small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="arrivaltime">Arrival Time:</label>
+                    <div class="input-field">
+                      <i class="fa fa-clock-o input-icon"></i>
+                      <input formControlName="arrivaltime" id="arrivaltime" [type]="arrivalTimeType"  placeholder="Arrival Time" (click)="changeInputType('arrivaltime')" required>
+                    </div>
+                    <small class="text-danger" *ngIf="(trainForm.controls['arrivaltime'].dirty || trainForm.controls['arrivaltime'].touched) && trainForm.hasError('required', 'arrivaltime')">
+                      *Arrival Time is required
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <label for="departuretime">Departure Time:</label>
+                    <div class="input-field">
+                      <i class="fa fa-clock-o input-icon"></i>
+                      <input formControlName="departuretime" id="departuretime" [type]="departureTimeType"  placeholder="Departure Time"  required>
+                    </div><small class="text-danger" *ngIf="(trainForm.controls['departuretime'].dirty || trainForm.controls['departuretime'].touched) && trainForm.hasError('required', 'departuretime')">
+                      *Departure Time is required
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <label for="arrivaldate">Departure Date:</label>
+      <div class="input-field">
+        <i class="fa fa-calendar input-icon"></i>
+        <input formControlName="arrivaldate" id="arrivaldate" [type]="arrivalDateType"  placeholder="Departure Date" (focus)="OnFocusDate($event.target)" required>
+      </div><small class="text-danger" *ngIf="(trainForm.controls['arrivaldate'].dirty || trainForm.controls['arrivaldate'].touched) && trainForm.hasError('required', 'arrivaldate')">
+                      *Arrival Date is required
+                    </small>
+                  </div>
+                </div>
+                </div>
+                  <div class="d-flex justify-content-center" >
+                <div class="right-section">
+                  <br>
+                  <div class="form-group">
+                    <label for="ac1tier">AC 1 Tier:</label>
+                    <div class="input-field">
+                      <i class="fa fa-sort-numeric-desc input-icon"></i>
+                      <input formControlName="ac1tier" id="ac1tier" [type]="ac1TierType" placeholder="AC 1 Tier" (click)="changeInputType('ac1tier')" required>
+                     
+                    </div>
+                    <small class="text-danger" *ngIf="(trainForm.controls['ac1tier'].dirty || trainForm.controls['ac1tier'].touched) && trainForm.hasError('required', 'ac1tier')">
+                      *AC 1 Tier is required
+                    </small>
+                    <small class="text-danger" *ngIf="trainForm.controls['ac1tier'].dirty && trainForm.controls['ac1tier'].hasError('min')">
+                      *AC 1 Tier must be greater than or equal to 1
+                    </small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="ac2tier">AC 2 Tier:</label>
+                    <div class="input-field">
+                      <i class="fa fa-sort-numeric-desc input-icon"></i>
+                      <input formControlName="ac2tier" id="ac2tier" [type]="ac2TierType" placeholder="AC 2 Tier" (click)="changeInputType('ac2tier')" required>
+                      
+                    </div>
+                    <small class="text-danger" *ngIf="(trainForm.controls['ac2tier'].dirty || trainForm.controls['ac2tier'].touched) && trainForm.hasError('required', 'ac2tier')">
+                      *AC 2 Tier is required
+                    </small>
+                    <small class="text-danger" *ngIf="trainForm.controls['ac2tier'].dirty && trainForm.controls['ac2tier'].hasError('min')">
+                      *AC 2 Tier must be greater than or equal to 1
+                    </small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="ac3tier">AC 3 Tier:</label>
+                    <div class="input-field">
+                      <i class="fa fa-sort-numeric-desc input-icon"></i>
+                      <input formControlName="ac3tier" id="ac3tier" [type]="ac3TierType" placeholder="AC 3 Tier" (click)="changeInputType('ac3tier')" required>
+                      
+                    </div>
+                    <small class="text-danger" *ngIf="(trainForm.controls['ac3tier'].dirty || trainForm.controls['ac3tier'].touched) && trainForm.hasError('required', 'ac3tier')">
+                      *AC 3 Tier is required
+                    </small>
+                    <small class="text-danger" *ngIf="trainForm.controls['ac3tier'].dirty && trainForm.controls['ac3tier'].hasError('min')">
+                      *AC 3 Tier must be greater than or equal to 1
+                    </small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="sleeper">Sleeper:</label>
+                    <div class="input-field">
+                      <i class="fa fa-sort-numeric-desc input-icon"></i>
+                      <input formControlName="sleeper" id="sleeper" [type]="sleeperType" placeholder="Sleeper" (click)="changeInputType('sleeper')" required>
+                      
+                    </div>
+                    <small class="text-danger" *ngIf="(trainForm.controls['sleeper'].dirty || trainForm.controls['sleeper'].touched) && trainForm.hasError('required', 'sleeper')">
+                      *Sleeper is required
+                    </small>
+                    <small class="text-danger" *ngIf="trainForm.controls['sleeper'].dirty && trainForm.controls['sleeper'].hasError('min')">
+                      *Sleeper must be greater than or equal to 1
+                    </small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="tatkal">Tatkal:</label>
+                    <div class="input-field">
+                      <i class="fa fa-sort-numeric-desc input-icon"></i>
+                      <input formControlName="tatkal" id="tatkal" [type]="tatkalType" placeholder="Tatkal" (click)="changeInputType('tatkal')" required>
+                      
+                    </div>
+                    <small class="text-danger" *ngIf="(trainForm.controls['tatkal'].dirty || trainForm.controls['tatkal'].touched) && trainForm.hasError('required', 'tatkal')">
+                      *Tatkal is required
+                    </small>
+                    <small class="text-danger" *ngIf="trainForm.controls['tatkal'].dirty && trainForm.controls['tatkal'].hasError('min')">
+                      *Tatkal must be greater than or equal to 1
+                    </small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="ladies">Ladies:</label>
+                    <div class="input-field">
+                      <i class="fa fa-sort-numeric-desc input-icon"></i>
+                      <input formControlName="ladies" id="ladies" [type]="ladiesType" placeholder="Ladies" (click)="changeInputType('ladies')" required>
+                      
+                    </div>
+                    <small class="text-danger" *ngIf="(trainForm.controls['ladies'].dirty || trainForm.controls['ladies'].touched) && trainForm.hasError('required', 'ladies')">
+                      *Ladies is required
+                    </small>
+                    <small class="text-danger" *ngIf="trainForm.controls['ladies'].dirty && trainForm.controls['ladies'].hasError('min')">
+                      *Ladies must be greater than or equal to 1
+                    </small>
+                  </div>
+                  
+                </div>
+                
+                </div>
+                
+                
+                </div>
+
+                <div class="form-group" style="margin-right: 60px;margin-left:60px;">
+                  <label for="baseFare">Base Fare:</label>
+                  <div class="input-field">
+                    <i class="fa fa-sort-numeric-desc input-icon"></i>
+                    <input formControlName="baseFare" id="baseFare" [type]="baseFareType" placeholder="Base Fare" (click)="changeInputType('baseFare')">
+                    
+                  </div>
+                  <small class="text-danger" *ngIf="trainForm.controls['baseFare'].dirty && trainForm.controls['baseFare'].hasError('min')">
+                    *Base Fare must be greater than or equal to 1
+                  </small>
+                </div>
+              
+              <div class="form-group">
+                <button type="submit" class="btn btn-outline-primary mt-4 w-100">Submit</button>
+                <div class="text-center pt-4 text-muted"><a id="newAccount" routerLink="/train">Back To List of Train</a></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div></div>

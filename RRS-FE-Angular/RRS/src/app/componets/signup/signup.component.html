@@ -1,0 +1,90 @@
+<div class="outer">
+    <div class="bgimg">
+        <div class="bgimg::before">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-mg-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weigth-bold">Sign Up</h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="signUp" (ngSubmit)="onSubmit()">
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="signUp.controls['name'].dirty && signUp.hasError('required','name')">
+                                    <span class="fa fa-user p-2"></span>                       
+                                    <input formControlName="name" type="text" placeholder="UserName">
+                                </div>
+                            </div>
+                            <small class="text-danger" *ngIf="signUp.controls['name'].dirty && signUp.hasError('required','name')">*User's name is Requires</small>
+                        
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="signUp.controls['gender'].dirty && signUp.hasError('required','gender')">
+                                    <span class="fa fa-venus-mars  p-2"></span>
+                                    <select name="gender" id="gender" formControlName="gender">
+                                        <option value="" selected disabled>Select Gender</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Male">Male</option> 
+                                    </select>
+                                </div>
+                            </div>
+                            <small class="text-danger" *ngIf="signUp.controls['gender'].dirty && signUp.hasError('required','gender')">*Gender is Requires</small>
+                        
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="signUp.controls['dob'].dirty && signUp.hasError('required','dob')">
+                                    <span class="fa fa-calendar p-2"></span>
+                                    <input formControlName="dob" type="text" placeholder="Date of Birth" (focus)="OnFocusDate($event.target)">
+                                </div>
+                            </div>
+                            <small class="text-danger" *ngIf="signUp.controls['dob'].dirty && signUp.hasError('required','dob')">*Dob is Requires</small>
+                        
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="signUp.controls['email'].dirty && signUp.hasError('required','email')">
+                                    <span class="fa fa-envelope p-2"></span>
+                                    <input formControlName="email" type="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <small class="text-danger" *ngIf="signUp.controls['email'].dirty && signUp.hasError('required','email')">*Email is Requires</small>
+                            <small class="text-danger" *ngIf="signUp.hasError('email','email') && (signUp.controls['email'].dirty || signUp.controls['email'].touched)">*Invalid Email</small>
+                            
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="signUp.controls['city'].dirty && signUp.hasError('required','city')">
+                                    <span class="fa fa-map-marker  p-2"></span>
+                                    <input formControlName="city" type="text" placeholder="City">
+                                </div>
+                            </div>
+                            <small class="text-danger" *ngIf="signUp.controls['city'].dirty && signUp.hasError('required','city')">*City is Requires</small>
+                        
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="signUp.controls['password'].dirty && signUp.hasError('required','password')">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="password" [type]="type" placeholder="Password" >
+                                    <span class="fa {{eyeIcon}}" (click)="hodeShow()"></span>
+                                </div>
+                            </div>
+                            <small class="text-danger" *ngIf="signUp.controls['password'].dirty && signUp.hasError('required','password')">*Password is Requires</small>
+                            <small class="text-danger" *ngIf="signUp.get('password')?.hasError('minlength') || signUp.get('password')?.hasError('pattern') ">Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character and 8 character long</small>
+    
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="signUp.controls['cpassword'].dirty && signUp.hasError('required','cpassword')">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="cpassword" [type]="type" placeholder="Confirm Password" >
+                                    <span class="fa {{eyeIcon}}" (click)="hodeShow()"></span>
+                                </div>
+                            </div>
+                            <small class="text-danger" *ngIf="signUp.controls['cpassword'].dirty && signUp.hasError('required','cpassword')">*Confirm Password is Requires</small>
+                            <small class="text-danger" *ngIf="signUp.get('cpassword')?.hasError('mismatchedPasswords')">Passwords do not match</small>
+                            
+                            <button type="submit" class="btn btn btn-outline-primary btn-block mt-4 w-100">Sign Up</button>
+                            <button [hidden]="!IsUserAdmin" type="submit" class="btn btn-primary btn-block mt-4 w-100">Register Admin</button>
+                            <div [hidden]="IsUserAdmin" class="text-center pt-4 text-muted">Already A User <a id="newAccount"
+                                    routerLink="/login">Login</a></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+</div>

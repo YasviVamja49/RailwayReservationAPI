@@ -1,0 +1,13 @@
+body{
+    background-color: #afafcd;
+    background: linear-gradient(to top, #88889a, #191c20 90%);
+    background-repeat: no-repeat;
+}
+.fullscreen-background {
+    background-image: url('src\assets\images\t2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Set the height to cover the entire viewport */
+
+  }

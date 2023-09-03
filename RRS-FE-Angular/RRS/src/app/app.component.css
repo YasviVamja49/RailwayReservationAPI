@@ -1,0 +1,70 @@
+
+.outer{
+    height: 100vh; 
+}
+.panel-heading{
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+label{
+    color: #353232;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    font-size: 18px;
+    font-weight: 500;
+}
+nav{
+    box-shadow:0px 0px 20px rgb(255, 255, 255) ;
+    background-color: #505459;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.form-inline label{
+    padding-left: 10px;
+    margin: 0;
+    cursor: pointer;
+    color: #353232;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    font-size: 18px;
+    font-weight: 500;
+}
+.btn{
+    margin-top: 20px;
+    border-radius: 15px;
+
+}
+
+.panel{
+    min-height: 38px;
+    box-shadow: 20px 20px 80px rgb(218,218,218);
+    border-radius: 12px;
+    margin-top: 25px;
+}
+.input-field{
+    border-radius: 8px;
+    padding: 5px;
+    display:flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    color: #242428;
+}
+.input-field.error{
+    border: 1px solid red;
+    color: red;
+}
+input{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+}
+
+.fa-sye-slash.btn{
+    border: none;
+}

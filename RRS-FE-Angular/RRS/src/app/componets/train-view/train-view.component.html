@@ -1,0 +1,82 @@
+<div class="outer">
+<div class="bgimg">
+  
+  <div class="container-fuild custom-margin"><div class="row">
+    <div class="mx-auto">
+  <div class="panel bg-white border">
+    <div class="panel-heading">
+      <h3 class="pt-5 font-weigth-bold">Search Trains</h3>
+    </div>
+    <form [formGroup]="trainSearchForm" (ngSubmit)="searchTrains()" class="form form-inline">
+      <div class="form-row">
+        <input type="text" class="form-control" id="startLocation" formControlName="startLocation" placeholder="Start Location" required>
+        <input type="text" class="form-control" id="endLocation" formControlName="endLocation" placeholder="End Location" required>
+        <input [type]="date" class="form-control" (focus)="OnFocusDate($event.target)" id="date" formControlName="date" min="2023-05-24" placeholder="Date" required>
+        <button type="submit" class="btn btn-outline-primary btn-block " style="width: 50%;" id="SearchBtn">Search</button>
+    
+      </div>
+      
+     
+    </form>
+    <div style="display: flex;justify-content: center;">
+    <button (click)="fetchTrainData()" class="btn btn-outline-primary btn-block mt-4 w-100" >View All Trains</button>
+     </div>
+     <div style="display: flex;justify-content: center;">
+     <button class="btn btn-outline-primary btn-block mt-4 w-100" type="button"  [hidden]="!IsUserAdmin" (click)="AddTrain()">Add New Train</button>
+    </div>
+  
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Train Number</th>
+          <th>Train Name</th>
+
+          <th>Start Location</th>
+          <th>End Location</th>
+          <th>Arrival Time</th>
+          <th>Departure Time</th>
+          <th>Arrival Date</th>
+          <th>AC1 Seats</th>
+          <th>AC2 Seats</th>
+          <th>AC3 Seats</th>
+          <th>Sleeper Seats</th>
+          <th>Tatkal Seats</th>
+          <th>Ladies Seats</th>
+          <th>Total Seats</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let train of trains">
+          <td>{{ train.trainNo }}</td>
+          <td>{{ train.trainName }}</td>
+          <td>{{ train.startloc }}</td>
+          <td>{{ train.endloc }}</td>
+          <td>{{ train.arrivaltime }}</td>
+          <td>{{ train.departuretime }}</td>
+          <td>{{ train.arrivaldate }}</td>
+          <td>{{ train.ac1tier }}</td>
+          <td>{{ train.ac2tier }}</td>
+          <td>{{ train.ac3tier }}</td>
+          <td>{{ train.sleeper }}</td>
+          <td>{{ train.tatkal }}</td>
+          <td>{{ train.ladies }}</td>
+          <td>{{ train.ac1tier+train.ac2tier+train.ac3tier+train.sleeper+train.tatkal+train.ladies}}</td>
+          <td>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end" >
+              <button class="btn btn-outline-success" type="button" [hidden]="IsUserAdmin" (click)="BookTicket(train.trainNo)">Book Ticket</button>
+              <button class="btn btn-outline-info" type="button" [hidden]="!IsUserAdmin" (click)="editTrain(train.trainNo)">Edit</button>
+              <button class="btn btn-outline-danger" type="button" [hidden]="!IsUserAdmin" (click)="deleteTrain(train.trainNo)">Delete</button>
+            </div>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div></div></div>
+</div>
+        
+ 
